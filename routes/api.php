@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\PemainController;
 use App\Http\Controllers\Api\TimController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put("update/{id}", "update")->name('update');
         Route::delete("destroy/{id}", "destroy")->name('destroy');
     });
+    Route::apiResource('pemain', PemainController::class);
 });
 Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'login')->name('login');

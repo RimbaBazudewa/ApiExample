@@ -19,11 +19,12 @@ return new class extends Migration
             $table->float('tinggi_badan');
             $table->float('berat_badan');
             $table->enum('posisi', ["penyerang", "gelandang", "bertahan", "penjaga gawang"])->comment("posisi pemain");
-            $table->integer("no_punggung")->unique();
+            $table->integer("no_punggung");
             $table->unsignedBigInteger("tim_id");
             $table->timestamps();
             $table->softDeletes();
 
+            $table->unique(['no_punggung', 'tim_id'], "primary_unique");
             $table->foreign('tim_id')->references('id')->on('tims');
         });
     }
