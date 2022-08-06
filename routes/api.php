@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\TimController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
@@ -22,6 +23,11 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::get('/user', function (Request $request) {
         return $request->user();
+    });
+    Route::controller(TimController::class)->prefix('tim')->name('tim.')->group(function () {
+        Route::post("store", "store")->name('store');
+        Route::put("update/{id}", "update")->name('update');
+        Route::delete("destroy/{id}", "destroy")->name('destroy');
     });
 });
 Route::controller(LoginController::class)->group(function () {

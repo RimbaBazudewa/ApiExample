@@ -12,23 +12,20 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
     public function test_it_register()
     {
-        if (!User::where('email', 'test@example.com')->get()) {
-            $response = $this->post('/api/register', [
-                'name' => "Test User",
-                "email" => "test@example.com",
-                "password" => "password",
-                "password_confirmation" => "password",
-            ]);
+        $response = $this->post('/api/register', [
+            'name' => "Test User",
+            "email" => "test@example.com",
+            "password" => "password",
+            "password_confirmation" => "password",
+        ]);
 
-            $response->assertJsonFragment([
-                "name" => "Test User",
-                "email" => "test@example.com",
-            ]);
-        } else {
-            $this->get('/')->assertStatus(200);
-        }
+        $response->assertJsonFragment([
+            "name" => "Test User",
+            "email" => "test@example.com",
+        ]);
     }
     /**
      * A basic feature test example.
@@ -37,14 +34,15 @@ class LoginTest extends TestCase
      */
     public function test_it_user_login_logout()
     {
+        $user = User::factory()->create();
         $response = $this->post('/api/login', [
-            "email" => "test@example.com",
+            "email" =>  $user->email,
             "password" => "password",
         ], [
             'contentType' => 'application/json',
         ]);
         $response->assertJsonFragment([
-            "name" => "Test User",
+            "name" => $user->name,
             "status" => true,
             "message"  => "success",
         ]);
