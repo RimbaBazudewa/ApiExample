@@ -14,6 +14,18 @@ class Pertandingan extends Model
     protected $table = 'pertandingans';
     protected $guarded = [];
 
+    protected $appends = [
+        'home_score',
+        'away_score',
+    ];
+    public function getHomeScoreAttribute()
+    {
+        return $this->scoreTimHome();
+    }
+    public function getAwayScoreAttribute()
+    {
+        return $this->scoreTimAway();
+    }
     public function detailPertandingans()
     {
         return $this->hasMany(DetailPertandingan::class);

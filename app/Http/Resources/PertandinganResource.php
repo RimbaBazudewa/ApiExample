@@ -16,4 +16,8 @@ class PertandinganResource extends JsonResource
     {
         return parent::toArray($request);
     }
+    public function withResponse($request, $response)
+    {
+        $response->header('contentType', 'application/json');
+    }
 }
