@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 class TimController extends Controller
 {
 
+    public function index()
+    {
+        return (new TimResource(Tim::latest('created_at')->get()))->response()->setStatusCode(200);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -27,7 +33,11 @@ class TimController extends Controller
         return (new TimResource($tim))->response()->setStatusCode(200);
     }
 
-
+    public function show($id)
+    {
+        $tim = Tim::find($id);
+        return (new TimResource($tim))->response()->setStatusCode(200);
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -8,16 +8,27 @@ use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class PemainTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    public function test_it_index()
+    {
+        $user = User::factory()->create();
+        $tim = Tim::factory()->create();
+        $pemain = Pemain::factory()->count(11)->for($tim)->create();
+        $response = $this->actingAs($user, 'sanctum')->get(route('pemain.index'));
+        $response->assertStatus(200)
+            ->assertJson(
+                fn (AssertableJson $json) =>
+                $json->has(
+                    'data',
+                )
+            );
+    }
+
     public function test_it_store()
     {
         $user = User::factory()->create();
@@ -54,6 +65,16 @@ class PemainTest extends TestCase
             'nama' => 'test_pemain',
             'tim_id' => $tim->id,
         ]);
+    }
+    public function test_it_show()
+    {
+        $user = User::factory()->create();
+        $tim = Tim::factory()->create();
+        $pemain = Pemain::factory()->for($tim)->create();
+        $response = $this->actingAs($user, 'sanctum')->get(route('pemain.show', $pemain->id));
+        $response->assertStatus(200)
+            ->assertJsonPath('data.id', $pemain->id)
+            ->assertJsonPath('data.nama', $pemain->nama);
     }
     public function test_it_update()
     {

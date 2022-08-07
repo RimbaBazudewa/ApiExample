@@ -19,17 +19,7 @@ class PemainController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return (new PemainResource(Pemain::orderBy('tim_id', 'asc')->orderBy('no_punggung', 'asc')->with('tim')->get()))->response()->setStatusCode(200);
     }
 
     /**
@@ -57,19 +47,12 @@ class PemainController extends Controller
      */
     public function show($id)
     {
-        //
+        $pemain = Pemain::with('tim')->where('id', $id)->first();
+        return (new PemainResource($pemain))->response()->setStatusCode(200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
+
 
     /**
      * Update the specified resource in storage.

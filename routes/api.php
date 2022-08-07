@@ -28,11 +28,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::controller(TimController::class)->prefix('tim')->name('tim.')->group(function () {
-        Route::post("store", "store")->name('store');
-        Route::put("update/{id}", "update")->name('update');
-        Route::delete("destroy/{id}", "destroy")->name('destroy');
-    });
+    // Route::controller(TimController::class)->prefix('tim')->name('tim.')->group(function () {
+    //     Route::post("store", "store")->name('store');
+    //     Route::put("update/{id}", "update")->name('update');
+    //     Route::delete("destroy/{id}", "destroy")->name('destroy');
+    // });
+    Route::apiResource('tim', TimController::class);
     Route::apiResource('pemain', PemainController::class);
     Route::apiResource('pertandingan', PertandinganController::class);
     Route::apiResource('detail-pertandingan', DetailPertandinganController::class)->only(['store', 'update', 'destroy']);
