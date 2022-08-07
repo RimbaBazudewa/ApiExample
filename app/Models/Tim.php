@@ -17,4 +17,12 @@ class Tim extends Model
     {
         return $this->hasMany(Pemain::class);
     }
+    public function homePertandingans()
+    {
+        return $this->hasMany(Pertandingan::class, 'home_tim_id');
+    }
+    public function awayPertandingans()
+    {
+        return $this->hasMany(Pertandingan::class, 'away_tim_id');
+    }
 }
