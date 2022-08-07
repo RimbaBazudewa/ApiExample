@@ -13,6 +13,10 @@ class Pemain extends Model
     protected $table = "pemains";
     protected $guarded = [];
 
+    public function detailPertandingan()
+    {
+        return $this->hasMany(DetailPertandingan::class);
+    }
 
     public function tim()
     {

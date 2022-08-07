@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('detail_pertandingans', function (Blueprint $table) {
             $table->id();
             $table->time('waktu')->comment('waktu pemain mencetak goal');
-            $table->unsignedBigInteger('pemain_id');
+            $table->unsignedBigInteger('pemain_id')->comment('pemain yang mencetak goal');
             $table->unsignedBigInteger('pertandingan_id');
             $table->timestamps();
             $table->softDeletes();

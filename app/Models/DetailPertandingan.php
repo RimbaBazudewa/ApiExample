@@ -17,4 +17,8 @@ class DetailPertandingan extends Model
     {
         return $this->belongsTo(Pertandingan::class);
     }
+    public function pemain()
+    {
+        return $this->belongsTo(Pemain::class);
+    }
 }

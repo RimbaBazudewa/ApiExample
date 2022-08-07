@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal')->comment('tanggal pertandingan');
             $table->time('waktu')->comment('waktu_pertandingan');
-            $table->integer('home_tim_score')->default(0);
-            $table->integer('away_tim_score')->default(0);
             $table->unsignedBigInteger('home_tim_id')->comment('tim tuan rumah');
             $table->unsignedBigInteger('away_tim_id')->comment('tim sebagai tamu');
             $table->timestamps();

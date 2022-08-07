@@ -21,7 +21,7 @@ class PemainFactory extends Factory
             "tinggi_badan" => fake()->numberBetween(150, 200),
             "berat_badan" => fake()->numberBetween(50, 70),
             "posisi" => fake()->randomElement(["penyerang", "gelandang", "bertahan", "penjaga gawang"]),
-            "no_punggung" => fake()->numberBetween(1, 99),
+            "no_punggung" => fake()->unique()->numberBetween(1, 99),
         ];
     }
 }

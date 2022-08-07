@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\DetailPertandinganController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PemainController;
 use App\Http\Controllers\Api\PertandinganController;
 use App\Http\Controllers\Api\TimController;
+use App\Models\DetailPertandingan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
@@ -33,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::apiResource('pemain', PemainController::class);
     Route::apiResource('pertandingan', PertandinganController::class);
+    Route::apiResource('detail-pertandingan', DetailPertandinganController::class)->only(['store', 'update', 'destroy']);
 });
 Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'login')->name('login');
