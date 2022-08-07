@@ -27,4 +27,20 @@ class Pertandingan extends Model
     {
         return $this->belongsTo(Tim::class, 'away_tim_id');
     }
+    public function scoreTimHome()
+    {
+        return $this->detailPertandingans()->whereHas('pemain', function ($q) {
+            $q->whereHas('tim', function ($k) {
+                $k->where('id', $this->home_tim_id);
+            });
+        })->count();
+    }
+    public function scoreTimAway()
+    {
+        return $this->detailPertandingans()->whereHas('pemain', function ($q) {
+            $q->whereHas('tim', function ($k) {
+                $k->where('id', $this->away_tim_id);
+            });
+        })->count();
+    }
 }

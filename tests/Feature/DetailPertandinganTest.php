@@ -33,17 +33,17 @@ class DetailPertandinganTest extends TestCase
             ->for($tim[0], 'homeTim')
             ->for($tim[1], 'awayTim')
             ->create();
-
+        $time = date('H:i:s');
         $response = $this->actingAs($user, 'sanctum')
             ->post(route('detail-pertandingan.store'), [
-                'waktu' => date('H:i:s'),
+                'waktu' => $time,
                 'pemain_id' => $pemain_tim_1[0]->id,
                 'pertandingan_id' => $pertandingan->id,
             ]);
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('detail_pertandingans', [
-            'waktu' => date('H:i:s'),
+            'waktu' =>  $time,
             'pemain_id' => $pemain_tim_1[0]->id,
             'pertandingan_id' => $pertandingan->id,
         ]);
@@ -66,9 +66,10 @@ class DetailPertandinganTest extends TestCase
             ->for($tim[1], 'awayTim')
             ->create();
 
+        $time = date('H:i:s');
         $response = $this->actingAs($user, 'sanctum')
             ->post(route('detail-pertandingan.store'), [
-                'waktu' => date('H:i:s'),
+                'waktu' => $time,
                 'pemain_id' => $pemain_tim_3[0]->id,
                 'pertandingan_id' => $pertandingan->id,
             ]);
@@ -78,7 +79,7 @@ class DetailPertandinganTest extends TestCase
             'error' => 'pemain yang anda masukan tidak ada pada tim yang bertanding',
         ]);
         $this->assertDatabaseMissing('detail_pertandingans', [
-            'waktu' => date('H:i:s'),
+            'waktu' => $time,
             'pemain_id' => $pemain_tim_1[0]->id,
             'pertandingan_id' => $pertandingan->id,
         ]);
