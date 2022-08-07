@@ -13,6 +13,18 @@ class Tim extends Model
     protected $table = "tims";
     protected $guarded = [];
 
+    protected $appends = [
+        'total_kemenangan_home',
+        'total_kemenangan_away',
+    ];
+    public function getTotalKemenanganHomeAttribute()
+    {
+        return   $this->homePertandingans()->count();
+    }
+    public function getTotalKemenanganAwayAttribute()
+    {
+        return $this->awayPertandingans()->count();
+    }
     public function pemains()
     {
         return $this->hasMany(Pemain::class);

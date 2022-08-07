@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('pemain', PemainController::class);
     Route::apiResource('pertandingan', PertandinganController::class);
     Route::apiResource('detail-pertandingan', DetailPertandinganController::class)->only(['store', 'update', 'destroy']);
+    Route::get('report', [PertandinganController::class, 'index'])->name('report');
 });
 Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'login')->name('login');

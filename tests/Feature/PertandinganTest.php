@@ -30,11 +30,20 @@ class PertandinganTest extends TestCase
             ->for($pemain_1[0])
             ->for($pertandingan)
             ->create();
+        $detaiPertandingan = DetailPertandingan::factory()
+            ->for($pemain_2[0])
+            ->for($pertandingan)
+            ->create();
+        $detaiPertandingan = DetailPertandingan::factory()
+            ->for($pemain_2[0])
+            ->for($pertandingan)
+            ->create();
         $response = $this->actingAs($user, 'sanctum')->get(route('pertandingan.index'));
         $response->assertStatus(200)
             ->assertJsonPath('data.0.tanggal', $pertandingan->tanggal)
             ->assertJsonPath('data.0.home_score', $pertandingan->scoreTimHome())
-            ->assertJsonPath('data.0.away_score', $pertandingan->scoreTimAway());
+            ->assertJsonPath('data.0.away_score', $pertandingan->scoreTimAway())
+            ->assertJsonPath('data.0.pencetak_goal_terbanyak.pemain_id', $pemain_2[0]->id);
     }
     public function test_it_store()
     {
