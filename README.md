@@ -39,7 +39,7 @@ run the project :
 
 ##  Documentation
 
-to see documentation , you can use web browser and type this url:
+to see documentation , you can use web browser and write this url:
 ```Bash
 	http://localhost:8000/request-docs/
 ```
