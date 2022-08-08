@@ -12,11 +12,24 @@ after clone this project use  command like this inside project directory :
 ```Bash
 	composer install
 ``` 
-next step is :
+rename .env.example to .env if using linux command like this : 
+```Bash
+	cp .env.example .env
+```
+after that open the .env and change the value of DB DATABASE to the database you want to use then type this if the database is empty:
 
 ```Bash
 	php artisan migrate --seed
 ```
+use this if the database not empty :
+```Bash
+	php artisan migrate:fresh --seed
+```
+before running the project make sure the app key is generated using this:
+```Bash
+	php artisan key:generate
+```
+
 run the project :
 
 ```Bash
