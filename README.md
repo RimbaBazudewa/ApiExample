@@ -2,7 +2,7 @@
 
 ## About This Api 
 
-This is an example for  api(application programming interface) football manager. this api created using laravel 9.x ,
+This is an example for  api(application programming interface) football manager. this api created using laravel 9.x ,use sanctum for auth
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ##  Instalation
@@ -46,6 +46,13 @@ to see documentation , you can use web browser and type this url:
 
 
 ###  Testing
+login testing : 
+```Bash
+    {
+        "email": "test@example.com",
+        "password" : "password"
+    }
+``
 
 command for testing :
 
