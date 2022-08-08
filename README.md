@@ -52,7 +52,7 @@ login testing :
         "email": "test@example.com",
         "password" : "password"
     }
-``
+```
 
 command for testing :
 
