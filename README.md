@@ -41,7 +41,7 @@ run the project :
 
 to see documentation , you can use web browser and write this url:
 ```Bash
-	http://localhost:8000/request-docs/
+	http://[server_url]/request-docs/
 ```
 
 
